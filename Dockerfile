@@ -12,6 +12,7 @@ RUN apt-get update -y && \
 RUN pip3 install requests consulate consul_kv
 
 COPY init.py /tmp/init.py
+COPY rundeck-config.properties /etc/rundeck/rundeck-config.properties
 
 EXPOSE 4440
 
