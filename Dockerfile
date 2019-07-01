@@ -2,6 +2,7 @@ FROM ubuntu:latest
 
 RUN apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jdk \
+    curl \
     openssh-client \
     git \
     awscli \
