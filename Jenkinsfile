@@ -64,6 +64,7 @@ node('common')  {
     stage('*** Build App') {
       println("We don't build an app, just a docker container")
       stash includes: "**", name: 'everything'
+      stash includes: "entrypoint.sh", name: 'entrypoint_sh'
     }
   }
 
@@ -71,6 +72,7 @@ node('docker-builds') {
 
   stage('*** Docker Build') {
     unstash 'everything'
+    unstash 'entrypoint_sh'
     sh "docker build -t ${PROJECT_NAME}:${consulMap.branch} --build-arg NEWRELIC=\"./newrelic\" ."
     sh "docker tag ${PROJECT_NAME}:${consulMap.branch} ${consulMap.AWS_ACCOUNT_NUMBER}.dkr.ecr.${consulMap.REGION}.amazonaws.com/${PROJECT_NAME}-${consulMap.FQDN.replaceAll(/\./, "-")}:${consulMap.branch}"
   }

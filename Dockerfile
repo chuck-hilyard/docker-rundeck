@@ -22,6 +22,9 @@ EXPOSE 4440
 
 ENV ROLE_ID "somevaultstuff"
 
+COPY entrypoint.sh /usr/local/bin/
+ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
+
 CMD ["python3", "-u", "tmp/init.py"]
 
 #wget https://dl.bintray.com/rundeck/rundeck-deb/rundeck_3.0.7.20181008-1.201810082317_all.deb && \
