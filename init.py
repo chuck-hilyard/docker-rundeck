@@ -11,7 +11,7 @@ def run_app():
   subprocess.run(["service", "rundeckd", "start"])
 
 def is_consul_up():
-  url = "http://consul:8500/v1/catalog/service/rundeck"
+  url = "http://consul.base.dev.usa.media.reachlocalservices.com:8500/v1/catalog/service/rundeck"
   try:
     response = requests.get(url)
   except requests.exceptions.ConnectionError as ce:
@@ -31,5 +31,5 @@ def main():
     time.sleep(60)
 
 if __name__ == '__main__':
-  run_app()
+  #run_app()
   main()
